@@ -1,4 +1,5 @@
 ﻿Create database Final_CNPM
+--drop  database Final_CNPM
 go 
 use Final_CNPM
 go
@@ -60,6 +61,8 @@ create table IMPORT_ORDER
 (
 	IM_OR_ID varchar(5) primary key not null,
 	IMPORT_DATE datetime,
+	PAYMENT_ID varchar(5),
+	IMPORT_STATUS nvarchar(255),
 );
 --drop table IMPORT_ORDER
 
@@ -87,6 +90,9 @@ add constraint FK_EXPORT_PAYMENT foreign key(PAYMENT_ID) references PAYMENT_METH
 
 alter table EXPORT_DETAIL
 add constraint FK_EXPORT_DETAIL_PRODUCT foreign key(PRO_ID) references PRODUCT(PRODUCT_ID)
+
+alter table IMPORT_ORDER
+add constraint FK_IMPORT_PAYMENT foreign key(PAYMENT_ID) references PAYMENT_METHOD(PAYMENT_ID)
 
 alter table IMPORT_DETAIL
 add constraint FK_IMPORT_DETAIL_PRODUCT foreign key(PRO_ID) references PRODUCT(PRODUCT_ID)
@@ -147,12 +153,12 @@ insert into EXPORT_DETAIL values('ED15','EX5','PRO1',150)
 insert into EXPORT_DETAIL values('ED16','EX5','PRO2',112)
 --select * from EXPORT_DETAIL
 
-insert into IMPORT_ORDER values('IM1','2022-1-15')
-insert into IMPORT_ORDER values('IM2','2022-2-19')
-insert into IMPORT_ORDER values('IM3','2022-6-5')
-insert into IMPORT_ORDER values('IM4','2022-3-25')
-insert into IMPORT_ORDER values('IM5','2022-5-14')
-insert into IMPORT_ORDER values('IM6','2021-11-15')
+insert into IMPORT_ORDER values('IM1','2022-1-15','PAY1',N'Đã Thanh Toán')
+insert into IMPORT_ORDER values('IM2','2022-2-19','PAY2',N'Đã Thanh Toán')
+insert into IMPORT_ORDER values('IM3','2022-6-5','PAY3',N'Đã Thanh Toán')
+insert into IMPORT_ORDER values('IM4','2022-3-25','PAY2',N'Đã Thanh Toán')
+insert into IMPORT_ORDER values('IM5','2022-5-14','PAY1',N'Đã Thanh Toán')
+insert into IMPORT_ORDER values('IM6','2021-11-15','PAY4',N'Đã Thanh Toán')
 --select * from IMPORT_ORDER
 
 
